@@ -1,0 +1,9 @@
+IF NOT EXISTS (
+  SELECT *
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE TABLE_NAME = 'users'
+    AND COLUMN_NAME = 'email'
+)
+BEGIN
+    ALTER TABLE users ADD email VARCHAR(100) NOT NULL DEFAULT 'default_email@example.com';
+END;
