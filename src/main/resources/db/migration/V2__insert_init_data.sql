@@ -12,15 +12,15 @@ WHERE NOT EXISTS (SELECT 1 FROM roles WHERE name = 'GUEST');
 
 -- Insert users if they do not exist
 INSERT INTO users (user_id, username, password, active, create_by, create_date)
-SELECT NEWID(), 'admin', 'password', 1, 'system', GETDATE()
+SELECT NEWID(), 'admin', '$2a$10$sYAQ9pJkMA1fbipd/V3//.nZBmuHAJyq.LYF.Pk3C4/Oykz.p7RrS', 1, 'system', GETDATE()
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'admin');
 
 INSERT INTO users (user_id, username, password, active, create_by, create_date)
-SELECT NEWID(), 'user', 'password', 1, 'system', GETDATE()
+SELECT NEWID(), 'user', '$2a$10$sYAQ9pJkMA1fbipd/V3//.nZBmuHAJyq.LYF.Pk3C4/Oykz.p7RrS', 1, 'system', GETDATE()
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'user');
 
 INSERT INTO users (user_id, username, password, active, create_by, create_date)
-SELECT NEWID(), 'guest', 'password', 1, 'system', GETDATE()
+SELECT NEWID(), 'guest', '$2a$10$sYAQ9pJkMA1fbipd/V3//.nZBmuHAJyq.LYF.Pk3C4/Oykz.p7RrS', 1, 'system', GETDATE()
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE username = 'guest');
 
 INSERT INTO user_role (user_id, role_id)
