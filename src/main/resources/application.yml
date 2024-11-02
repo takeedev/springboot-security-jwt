@@ -18,3 +18,6 @@ logging:
         jdbc: DEBUG
         security: DEBUG
     root: INFO
+
+jwt:
+  secret: "a1b2C3d4E5f6G7h8I9j0KlmNOPqrsTUVWxyzABCDefghIJKLmnopQRa39fjkks9askkid4o3l3ds5lirnus9d9e0ov83kso4svx"

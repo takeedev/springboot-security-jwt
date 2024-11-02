@@ -4,6 +4,7 @@ import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +17,11 @@ public class JwtTokenUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
 
-    private final String SECRET_KEY = "a1b2C3d4E5f6G7h8I9j0KlmNOPqrsTUVWxyzABCDefghIJKLmnopQRa39fjkks9askkid4o3l3ds5lirnus9d9e0ov83kso4svx";
+    private final Key key;
 
-    Key key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+    public JwtTokenUtil(@Value("${jwt.secret}") String secret) {
+        key = Keys.hmacShaKeyFor(secret.getBytes());
+    }
 
     public String generateKey(String username, List<String> roles) {
         return Jwts.builder()
