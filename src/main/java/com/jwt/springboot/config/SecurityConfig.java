@@ -6,6 +6,7 @@ import com.jwt.springboot.enums.RoleEnum;
 import com.jwt.springboot.service.security.UserDetailService;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -38,7 +39,8 @@ public class SecurityConfig {
     private final AuthEntryPoint unauthorizedHandler;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @SneakyThrows
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http.authorizeHttpRequests(request ->
                         request
                                 .requestMatchers("/auth/**").permitAll()
