@@ -2,6 +2,7 @@ package com.jwt.springboot.service.security;
 
 import com.jwt.springboot.dao.UserDAO;
 import lombok.Builder;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,11 +11,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Getter
 @Builder
 public class UserDetail implements UserDetails {
 
     private String username;
     private String password;
+    private String email;
+    private boolean active;
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserDetail build(UserDAO user) {
@@ -23,6 +27,8 @@ public class UserDetail implements UserDetails {
         return UserDetail.builder()
                 .username(user.getUsername())
                 .password(user.getPassword())
+                .email(user.getEmail())
+                .active(user.isActive())
                 .authorities(authorities)
                 .build();
     }

@@ -1,5 +1,6 @@
 package com.jwt.springboot.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.util.Date;
@@ -18,6 +19,9 @@ public class UserDTO {
     private String password;
     private boolean active;
     private String createBy;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.ssss")
     private Date createDate;
+    private Integer failedAttempt;
+    private Date dateLocked;
     private Set<RoleDTO> role;
 }
