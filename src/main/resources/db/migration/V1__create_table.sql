@@ -12,6 +12,9 @@ CREATE TABLE users (
     username NVARCHAR(255) NOT NULL,
     password NVARCHAR(255) NOT NULL,
     active BIT NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    failed_attempt INTEGER NOT NULL,
+    date_locked DATETIME,
     create_by NVARCHAR(255) NOT NULL,
     create_date DATETIME NOT NULL
 );
